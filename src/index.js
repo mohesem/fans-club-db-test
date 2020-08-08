@@ -49,8 +49,8 @@ mongoose.connection.on("connected", async () => {
           .limit(1)
           .skip(nu - 1)
           .exec();
-        console.log(team);
-        const logo = await findImg(team.country, team.city, team.name);
+        // console.log(team);
+        const logo = await findImg(team[0].country, team[0].city, team[0].name);
         // console.log(logo)
         if (logo) console.log("found logo");
         // else console.log('wrong')
