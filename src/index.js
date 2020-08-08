@@ -7,16 +7,24 @@ mongoose.connect("mongodb://localhost:27017/fansclub", {
   useCreateIndex: true,
 });
 
-mongoose.connection.on("connected", async() => {
+mongoose.connection.on("connected", async () => {
   console.log("MongoDB connected");
 
   try {
-      
-  const count = await Team.countDocuments({}).exec();
-  console.log(count)
-
+    const count = await Team.countDocuments({}).exec();
+    console.log(count)(async function loop() {
+      if (count) {
+        count--;
+        const team = await Team.limit(1)
+          .skip((count - 1))
+          .exec();
+        console.log(team)
+        loop()
+      } else {
+        return;
+      }
+    })();
   } catch (error) {
-    console.error(error)      
+    console.error(error);
   }
-
 });
