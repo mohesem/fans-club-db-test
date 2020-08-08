@@ -11,15 +11,15 @@ mongoose.connect("mongodb://localhost:27017/fansclub", {
 
 const findImg = (country, city, name) => {
     return new Promise(resolve => {
-      fs.readFile(
-        `/root/repos/fans-club-db-test/src/logo/AFC Cambodia9.jpeg`,
+      fs.readFile(       
+        `${__dirname}/logo/${country + city + name}.png`,
         (errRead, img) => {
           if (img) {
             // console.log('imaaaaaaaaaaage found');
             resolve(img);
           } else {
             fs.readFile(
-              `/root/repos/fans-club-db-test/src/logo/${country + city + name}.jpg`,
+              `${__dirname}/logo/${country + city + name}.jpg`,
               (errRead2, img2) => {
                 if (img2) {
                 //   console.log('imaaaaaaaaaaage found');
