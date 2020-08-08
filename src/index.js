@@ -41,7 +41,7 @@ mongoose.connection.on("connected", async () => {
   try {
     const count = await Team.countDocuments({}).exec();
     console.log(count);
-    const nu = 1;
+    let nu = 1;
 
     (async function loop() {
       if (nu < count) {
