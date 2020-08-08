@@ -66,7 +66,7 @@ mongoose.connection.on("connected", async () => {
         nu = nu + 1;
         loop();
       } else {
-        fs.watchFile("./logs.txt", logs, (err) => {
+        fs.writeFile("./logs.txt", logs, (err) => {
           console.log(err);
         });
         return;
