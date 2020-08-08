@@ -54,7 +54,7 @@ mongoose.connection.on("connected", async () => {
         // console.log(logo)
         if (logo) console.log("found logo");
         // else console.log('wrong')
-        nu + 1;
+        nu = nu + 1;
         loop();
       } else {
         return;
