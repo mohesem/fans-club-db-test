@@ -12,14 +12,14 @@ mongoose.connect("mongodb://localhost:27017/fansclub", {
 const findImg = (country, city, name) => {
     return new Promise(resolve => {
       fs.readFile(
-        `/root/repos/fans-club-db-test/logo/${country + city + name}.png`,
+        `/root/repos/fans-club-db-test/src/logo/${country + city + name}.png`,
         (errRead, img) => {
           if (img) {
             // console.log('imaaaaaaaaaaage found');
             resolve(img);
           } else {
             fs.readFile(
-              `/root/repos/fans-club-db-test/logo/${country + city + name}.jpg`,
+              `/root/repos/fans-club-db-test/src/logo/${country + city + name}.jpg`,
               (errRead2, img2) => {
                 if (img2) {
                 //   console.log('imaaaaaaaaaaage found');
@@ -51,8 +51,8 @@ mongoose.connection.on("connected", async () => {
           .exec();
         // console.log(team);
         const logo = await findImg(team.country, team.city, team.name);
-        console.log(logo)
-        // if (logo) console.log('found logo') 
+        // console.log(logo)
+        if (logo) console.log('found logo') 
         // else console.log('wrong')
         nu + 1;
         loop();
