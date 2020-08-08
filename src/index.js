@@ -1,11 +1,39 @@
 import mongoose from "mongoose";
 import Team from "./models/teamsModel";
+import fs from 'fs'
 
 mongoose.connect("mongodb://localhost:27017/fansclub", {
   useUnifiedTopology: true,
   useNewUrlParser: true,
   useCreateIndex: true,
 });
+
+
+const findImg = (country, city, name) => {
+    return new Promise(resolve => {
+      fs.readFile(
+        `/root/repos/fans-club-db-test/logo/${country + city + name}.png`,
+        (errRead, img) => {
+          if (img) {
+            // console.log('imaaaaaaaaaaage found');
+            resolve(img);
+          } else {
+            fs.readFile(
+              `/root/repos/fans-club-db-test/logo/${country + city + name}.jpg`,
+              (errRead2, img2) => {
+                if (img2) {
+                //   console.log('imaaaaaaaaaaage found');
+                  resolve(img2);
+                } else {
+                  resolve('');
+                }
+              }
+            );
+          }
+        }
+      );
+    });
+  };
 
 mongoose.connection.on("connected", async () => {
   console.log("MongoDB connected");
@@ -22,6 +50,9 @@ mongoose.connection.on("connected", async () => {
           .skip(nu - 1)
           .exec();
         console.log(team);
+        const logo = await findImg(team.country, team.city, team.name);
+        if (logo) console.log('found logo') 
+        else console.log('wrong')
         nu + 1;
         loop();
       } else {
