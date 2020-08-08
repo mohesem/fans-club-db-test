@@ -12,13 +12,14 @@ mongoose.connection.on("connected", async () => {
 
   try {
     const count = await Team.countDocuments({}).exec();
-    console.log(count)(async function loop() {
+    console.log(count);
+    (async function loop() {
       if (count) {
-        count--;
         const team = await Team.limit(1)
           .skip((count - 1))
           .exec();
         console.log(team)
+        count--;
         loop()
       } else {
         return;
