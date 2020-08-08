@@ -52,12 +52,14 @@ mongoose.connection.on("connected", async () => {
           .skip(nu + 1)
           .exec();
         // console.log(team);
-        const logo = await findImg(team[0].country, team[0].city, team[0].name);
-        // console.log(logo)
-        if (logo) {
-          console.log("found logo");
-        } else {
-          logs += `${team[0]} \n`;
+        if (team[0].country, team[0].city, team[0].name) { 
+            const logo = await findImg(team[0].country, team[0].city, team[0].name);
+            // console.log(logo)
+            if (!logo) {           
+              logs += `${team[0]} \n`;
+            }
+        } else { 
+            logs += `${team[0]} \n`;
         }
         // else console.log('wrong')
         nu = nu + 1;
