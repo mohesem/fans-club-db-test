@@ -38,7 +38,7 @@ const findImg = (country, city, name) => {
 mongoose.connection.on("connected", async () => {
   console.log("MongoDB connected");
 
-  const logs = "";
+  let logs = "";
 
   try {
     const count = await Team.countDocuments({}).exec();
