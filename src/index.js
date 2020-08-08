@@ -47,12 +47,13 @@ mongoose.connection.on("connected", async () => {
 
     (async function loop() {
       if (nu < count) {
+          console.log(nu)
         const team = await Team.find()
           .limit(1)
           .skip(nu + 1)
           .exec();
         // console.log(team);
-        if (team[0].country, team[0].city, team[0].name) { 
+        if (team[0]?.country, team[0]?.city, team[0]?.name) { 
             const logo = await findImg(team[0].country, team[0].city, team[0].name);
             // console.log(logo)
             if (!logo) {           
