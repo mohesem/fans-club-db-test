@@ -7,13 +7,16 @@ mongoose.connect("mongodb://localhost:27017/fansclub", {
   useCreateIndex: true,
 });
 
-mongoose.connection.on("connected", () => {
+mongoose.connection.on("connected", async() => {
   console.log("MongoDB connected");
-  async () => {
-   Team.countDocuments({}, (err, count) => { 
-       if (err) console.log('error on counting teams')
-       console.log('total teams count is : ', count)
-   });
 
-  };
+  try {
+      
+  const count = await Team.countDocuments({}).exec();
+  console.log(count)
+
+  } catch (error) {
+    console.error(error)      
+  }
+
 });
