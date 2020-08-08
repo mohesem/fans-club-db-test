@@ -13,6 +13,6 @@ mongoose.connection.on("connected", () => {
 
         const count = await Team.countDocuments({})
         console.log(count)
-        
+
     })
 });
