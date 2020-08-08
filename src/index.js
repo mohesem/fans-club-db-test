@@ -19,7 +19,7 @@ mongoose.connection.on("connected", async () => {
       if (nu < count) {
         const team = await Team.find()
           .limit(1)
-          .skip(count - 1)
+          .skip(nu - 1)
           .exec();
         console.log(team);
         nu + 1;
