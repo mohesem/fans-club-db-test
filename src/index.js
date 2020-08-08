@@ -57,7 +57,7 @@ mongoose.connection.on("connected", async () => {
         if (logo) {
           console.log("found logo");
         } else {
-          log += `${team[0]} \n`;
+          logs += `${team[0]} \n`;
         }
         // else console.log('wrong')
         nu = nu + 1;
