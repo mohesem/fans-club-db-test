@@ -10,7 +10,7 @@ mongoose.connect("mongodb://localhost:27017/fansclub", {
 
 const findImg = (country, city, name) => {
   return new Promise((resolve) => {
-    console.log(`${__dirname}/logo/${country + city + name}`);
+    // console.log(`${__dirname}/logo/${country + city + name}`);
     fs.readFile(
       `${__dirname}/logo/${country + city + name}.png`,
       (errRead, img) => {
@@ -38,6 +38,8 @@ const findImg = (country, city, name) => {
 mongoose.connection.on("connected", async () => {
   console.log("MongoDB connected");
 
+  const logs = "";
+
   try {
     const count = await Team.countDocuments({}).exec();
     console.log(count);
@@ -52,11 +54,18 @@ mongoose.connection.on("connected", async () => {
         // console.log(team);
         const logo = await findImg(team[0].country, team[0].city, team[0].name);
         // console.log(logo)
-        if (logo) console.log("found logo");
+        if (logo) {
+          console.log("found logo");
+        } else {
+          log += `${team[0]} \n`;
+        }
         // else console.log('wrong')
         nu = nu + 1;
         loop();
       } else {
+        fs.watchFile("./logs.txt", logs, (err) => {
+          console.log(err);
+        });
         return;
       }
     })();
