@@ -11,6 +11,7 @@ mongoose.connect("mongodb://localhost:27017/fansclub", {
 
 const findImg = (country, city, name) => {
     return new Promise(resolve => {
+        console.log(  `${__dirname}/logo/${country + city + name}`)
       fs.readFile(       
         `${__dirname}/logo/${country + city + name}.png`,
         (errRead, img) => {
