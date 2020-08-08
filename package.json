@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "babel-node ."
+    "start": "babel-node .",
+    "fol": "babel-node src/testFolder.js"
   },
   "author": "",
   "license": "ISC",
