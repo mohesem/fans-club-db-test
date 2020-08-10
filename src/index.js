@@ -54,25 +54,25 @@ mongoose.connection.on("connected", async () => {
           .exec();
         // console.log(team);
         if (
-          team[0].group !== "CAF" ||
-          team[0].group !== "OCF" ||
-          team[0].group !== "NF" ||
-          team[0].group !== "Non NF"
+          (team[0].group !== "CAF" ||
+            team[0].group !== "OCF" ||
+            team[0].group !== "NF" ||
+            team[0].group !== "Non NF") &&
+          (team[0]?.country, team[0]?.city, team[0]?.name)
         ) {
-          if ((team[0]?.country, team[0]?.city, team[0]?.name)) {
-            const logo = await findImg(
-              team[0].country,
-              team[0].city,
-              team[0].name
-            );
-            // console.log(logo)
-            if (!logo) {
-              logs += `${team[0]} \n`;
-            }
-          } else {
+          const logo = await findImg(
+            team[0].country,
+            team[0].city,
+            team[0].name
+          );
+          // console.log(logo)
+          if (!logo) {
             logs += `${team[0]} \n`;
           }
+        } else {
+          logs += `${team[0]} \n`;
         }
+
         // else console.log('wrong')
         nu = nu + 1;
         loop();
