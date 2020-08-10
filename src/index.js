@@ -54,9 +54,9 @@ mongoose.connection.on("connected", async () => {
           .exec();
         // console.log(team[0].group);
         if (
-          team[0].group !== "CAF" ||
-          team[0].group !== "OCF" ||
-          team[0].group !== "NF" ||
+          team[0].group !== "CAF" &&
+          team[0].group !== "OCF" &&
+          team[0].group !== "NF" &&
           team[0].group !== "Non NF"
         ) {
           const logo = await findImg(
