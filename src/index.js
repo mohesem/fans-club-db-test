@@ -52,7 +52,7 @@ mongoose.connection.on("connected", async () => {
           .limit(1)
           .skip(nu + 1)
           .exec();
-        // console.log(team);
+        console.log(team[0].group);
         if (
           team[0].group != "CAF" ||
           team[0].group != "OCF" ||
